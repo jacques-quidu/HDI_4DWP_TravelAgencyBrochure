@@ -1,0 +1,136 @@
+{
+	"destination": "detailScreen",
+	"markerHeader": 15,
+	"markerBody": 200,
+	"markerBreak": 220,
+	"markerFooter": 240,
+	"events": [
+		"onLoad",
+		"onValidate",
+		"onClick",
+		"onOutsideCall",
+		"onDoubleClick",
+		"onDrop",
+		"onMenuSelect",
+		"onPluginArea",
+		"onDataChange",
+		"onDragOver",
+		"onTimer",
+		"onAfterKeystroke",
+		"onAfterEdit",
+		"onBeginDragOver",
+		"onBoundVariableChange",
+		"onPageChange"
+	],
+	"method": "method.4dm",
+	"pageFormat": {
+		"paperName": "A4",
+		"paperWidth": "842pt",
+		"paperHeight": "595pt"
+	},
+	"pages": [
+		null,
+		{
+			"objects": {
+				"btnCreate": {
+					"type": "button",
+					"top": 96,
+					"left": 934,
+					"width": 140,
+					"height": 20,
+					"text": "Create Document",
+					"focusable": false,
+					"method": "ObjectMethods/btnCreate.4dm",
+					"events": [
+						"onClick"
+					],
+					"sizingX": "move"
+				},
+				"Popup Dropdown List": {
+					"type": "dropdown",
+					"top": 212,
+					"left": 931,
+					"width": 153,
+					"height": 20,
+					"dataSource": "arrBookmarks",
+					"focusable": false,
+					"method": "ObjectMethods/Popup Dropdown List.4dm",
+					"events": [
+						"onDataChange"
+					],
+					"sizingX": "move"
+				},
+				"WParea": {
+					"type": "write",
+					"top": 90,
+					"left": 0,
+					"width": 880,
+					"height": 590,
+					"sizingX": "grow",
+					"sizingY": "grow",
+					"dataSource": "wpDoc",
+					"hideFocusRing": true,
+					"scrollbarVertical": "automatic",
+					"scrollbarHorizontal": "automatic",
+					"dpi": 0,
+					"borderStyle": "none",
+					"method": "ObjectMethods/WParea.4dm",
+					"events": [
+						"onLoad",
+						"onLosingFocus",
+						"onGettingFocus",
+						"onSelectionChange",
+						"onAfterEdit"
+					]
+				},
+				"WPtoolbar": {
+					"type": "subform",
+					"top": 0,
+					"left": 0,
+					"width": 880,
+					"height": 90,
+					"sizingX": "grow",
+					"detailForm": "WP_Toolbar",
+					"focusable": false,
+					"deletableInList": false,
+					"doubleClickInRowAction": "editSubrecord",
+					"doubleClickInEmptyAreaAction": "addSubrecord",
+					"selectionMode": "multiple",
+					"printFrame": "variable"
+				},
+				"Text": {
+					"type": "text",
+					"text": "1. Generate document",
+					"top": 60,
+					"left": 905,
+					"width": 179,
+					"height": 16,
+					"sizingX": "move"
+				},
+				"Text1": {
+					"type": "text",
+					"text": "2. Navigate with bookmarks",
+					"top": 176,
+					"left": 905,
+					"width": 185,
+					"height": 16,
+					"sizingX": "move"
+				}
+			}
+		}
+	],
+	"geometryStamp": 77,
+	"rightMargin": 20,
+	"bottomMargin": 20,
+	"$4d": {
+		"version": "1",
+		"kind": "form"
+	},
+	"editor": {
+		"activeView": "View 1",
+		"defaultView": "View 1",
+		"views": {
+			"View 1": {}
+		}
+	}
+}

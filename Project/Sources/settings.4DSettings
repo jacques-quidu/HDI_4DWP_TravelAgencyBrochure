@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><preferences stamp="9">
+	<com.4d>
+		<deployment>
+			<options/></deployment>
+		<server>
+			<network>
+				<options use_legacy_network_layer="false"/>
+				<client_server use_encryption="false"/></network></server>
+		<database>
+			<misc standard_xpath="false" use_ast_interpreter="false"/></database>
+		<compiler>
+			<options compilation_path="3"/></compiler>
+		<web>
+			<standalone_server>
+				<configuration automatic_session_management="true" session_mode="3"/></standalone_server>
+			<remote>
+				<configuration automatic_session_management="true" session_mode="3"/></remote></web>
+		<general startup_environnement="1"/>
+		<interface>
+			<user splash_screen="false"/>
+		</interface></com.4d></preferences>

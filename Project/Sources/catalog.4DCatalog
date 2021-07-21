@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE base SYSTEM "http://www.4d.com/dtd/2007/base.dtd" >
+<base name="Demo4DWritePro" uuid="28072B720CA24C41B52FA60310F7C571" collation_locale="en">
+	<schema name="DEFAULT_SCHEMA"/>
+	<table name="Site" uuid="43FB8E15D814489F8245615E4D4FE3A9" id="1">
+		<field name="ID" uuid="4C565B8C2C194104BDA1CDED901E3CE9" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="Name" uuid="9A5E87FFB0D34EA5B7749B86F26B81A3" type="10" never_null="true" id="2"/>
+		<field name="Description" uuid="B27AFD0239F645DAB9EB02598F3080E1" type="10" never_null="true" id="3"/>
+		<field name="Highlights" uuid="0CFFA98ED34F4689AAA37CDA952360E2" type="10" never_null="true" id="4"/>
+		<field name="Image1" uuid="C1CC6E2F23C043B6A58988B0FC5BC47E" type="12" never_null="true" id="5"/>
+		<field name="Image2" uuid="E6705090B724408FBF1E25BC08A5A428" type="12" never_null="true" id="6"/>
+		<field name="Image3" uuid="41D8ABB7969E4535B37141CE765876F2" type="12" never_null="true" id="7"/>
+		<field name="IDFlyer" uuid="955EE7CB66204D1DA8AAAC06B4895774" type="4" never_null="true" id="8"/>
+		<field name="Country" uuid="AD74940A57AC4F52BD5BC49735B37100" type="10" never_null="true" id="9"/>
+		<field name="IDCountry" uuid="962D7F1713884D71866306B1021487D9" type="4" never_null="true" id="10"/>
+		<field name="Condition" uuid="1722B0A3E5CA421A8EA487E7A494BA99" type="10" limiting_length="255" never_null="true" id="11"/>
+		<primary_key field_name="ID" field_uuid="4C565B8C2C194104BDA1CDED901E3CE9"/>
+		<table_extra input_form="Input" output_form="Output">
+			<editor_table_info displayable_fields_count="13">
+				<color red="255" green="255" blue="255" alpha="0"/>
+				<coordinates left="260.08203125" top="377.32421875" width="182.36328125" height="322.27734375"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<table name="Flyer" uuid="10D10CA80C854F46A1B9D69A387657E2" id="2">
+		<field name="ID" uuid="DC269891F98E4A11B3FC81E8C2571A85" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="Title" uuid="AEAB0366F02A43828C37434A19104E1D" type="10" limiting_length="255" never_null="true" id="2"/>
+		<field name="Subtitle" uuid="27DB46A88C0C422BA6F7CC2A8FA96D13" type="10" limiting_length="255" never_null="true" id="3"/>
+		<field name="Cover" uuid="CC2A3676C80E4961B1F8B1D42C589C64" type="12" never_null="true" id="4"/>
+		<field name="BackCover" uuid="02DA03EAC2BF4A34990CC7EB54F44C54" type="12" never_null="true" id="5"/>
+		<field name="Edito" uuid="9D0F74E0B7854777AAE496E038D5BDFB" type="10" never_null="true" id="6"/>
+		<field name="EditoImage" uuid="BC7A8AEE78A74E52B7D2EB9BD055ACD9" type="12" never_null="true" id="7"/>
+		<field name="Intro" uuid="B6DE1A4AA3DD443F8DAA633C2AE5AA98" type="21" never_null="true" id="8"/>
+		<field name="IntroImage" uuid="AF2704B135B84B6D991B91B5BE43571B" type="12" never_null="true" id="9"/>
+		<primary_key field_name="ID" field_uuid="DC269891F98E4A11B3FC81E8C2571A85"/>
+		<table_extra input_form="Input" output_form="Output">
+			<editor_table_info displayable_fields_count="9">
+				<color red="255" green="255" blue="255" alpha="0"/>
+				<coordinates left="6.59375" top="201.0546875" width="144.7734375" height="243.92578125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<table name="Hotel" uuid="ADBF64ACA2EC44BB84F475C870D6CAC7" id="3">
+		<field name="ID" uuid="E8E5610FE6CE46938A4EDA6759B396A5" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="Name" uuid="4AFF535275304BB2A056ADD8ECAE6A82" type="10" limiting_length="255" never_null="true" id="2"/>
+		<field name="Rating" uuid="0714D48E5BDF4C04BCC34370B51B3543" type="4" never_null="true" id="3"/>
+		<field name="Animation" uuid="2C82E08ADD1246FC8E6440D86FC3B5D5" type="1" never_null="true" id="4"/>
+		<field name="Children" uuid="5747BCE294D44598956152315FDF118F" type="1" never_null="true" id="5"/>
+		<field name="Restaurant" uuid="772D3B4E8E30472C89C9631BE0777BD4" type="4" never_null="true" id="6"/>
+		<field name="IDFlyer" uuid="BA445727484C48ACB4BF6310E4FA1FDF" type="4" never_null="true" id="8"/>
+		<field name="Price" uuid="1F1ED1C88ABE404682293E728FEB6659" type="4" never_null="true" id="9"/>
+		<field name="AllIncludes" uuid="2AE3F85468904A5EBFF3820A465E8812" type="1" never_null="true" id="10"/>
+		<field name="IDCountry" uuid="38D73761F0FC49DF94BE04647CCC362A" type="4" never_null="true" id="11"/>
+		<primary_key field_name="ID" field_uuid="E8E5610FE6CE46938A4EDA6759B396A5"/>
+		<table_extra input_form="Input" output_form="Output">
+			<editor_table_info displayable_fields_count="11">
+				<color red="255" green="255" blue="255" alpha="0"/>
+				<coordinates left="252.4140625" top="0" width="185.49609375" height="277.23046875"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<table name="Continent" uuid="EADB89645D804D2EA82CF5A867E992AC" id="4">
+		<field name="ID" uuid="7A1F7566B24F4862895270F4B14D92D6" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="Name" uuid="502DDFB781D74E38B9BE63B3BD3B6B1D" type="10" limiting_length="255" never_null="true" id="2"/>
+		<field name="Image" uuid="2DF59791767A4275A7FF62B34EDD8C9D" type="12" never_null="true" id="3"/>
+		<primary_key field_name="ID" field_uuid="7A1F7566B24F4862895270F4B14D92D6"/>
+		<table_extra input_form="Input" output_form="Output">
+			<editor_table_info displayable_fields_count="6">
+				<color red="255" green="255" blue="255" alpha="0"/>
+				<coordinates left="834.7734375" top="260.2578125" width="120" height="167.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<table name="Country" uuid="E61E477C1D854BBB90B183AB54CF0955" id="5">
+		<field name="ID" uuid="CD26C97E88A248119DD451E9AC03517D" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="Name" uuid="59C35B887A684193B54068DCE86F7150" type="10" limiting_length="255" never_null="true" id="2"/>
+		<field name="IDContinent" uuid="BDEDCC6F9EF54226BB0AF22B93F897F4" type="4" never_null="true" id="3"/>
+		<primary_key field_name="ID" field_uuid="CD26C97E88A248119DD451E9AC03517D"/>
+		<table_extra input_form="Input" output_form="Output">
+			<editor_table_info displayable_fields_count="6">
+				<color red="255" green="255" blue="255" alpha="0"/>
+				<coordinates left="611.6484375" top="262.1484375" width="120" height="167.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<relation uuid="025B42477EC44323BC238AE7A62858CC" name_Nto1="Link_1" name_1toN="toSites" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="955EE7CB66204D1DA8AAAC06B4895774" name="IDFlyer">
+				<table_ref uuid="43FB8E15D814489F8245615E4D4FE3A9" name="Site"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="DC269891F98E4A11B3FC81E8C2571A85" name="ID">
+				<table_ref uuid="10D10CA80C854F46A1B9D69A387657E2" name="Flyer"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="0" via_point_y="0" prefers_left="true" smartlink="true">
+				<color red="255" green="255" blue="255" alpha="0"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<relation uuid="9167755F9FEE44019B19B9F3B34D151C" name_Nto1="toContinent" name_1toN="toCountries" auto_load_Nto1="true" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="BDEDCC6F9EF54226BB0AF22B93F897F4" name="IDContinent">
+				<table_ref uuid="E61E477C1D854BBB90B183AB54CF0955" name="Country"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="7A1F7566B24F4862895270F4B14D92D6" name="ID">
+				<table_ref uuid="EADB89645D804D2EA82CF5A867E992AC" name="Continent"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="true" smartlink="true">
+				<color red="255" green="255" blue="255" alpha="0"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<relation uuid="00F2E55F84A34DC19FF3C09937C69050" name_Nto1="toCountry" name_1toN="toSite" auto_load_Nto1="true" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="962D7F1713884D71866306B1021487D9" name="IDCountry">
+				<table_ref uuid="43FB8E15D814489F8245615E4D4FE3A9" name="Site"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="CD26C97E88A248119DD451E9AC03517D" name="ID">
+				<table_ref uuid="E61E477C1D854BBB90B183AB54CF0955" name="Country"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="true" smartlink="true">
+				<color red="255" green="255" blue="255" alpha="0"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<relation uuid="E53A8F94C9EF41C3894400F55D6E1DA2" name_Nto1="toFlyer" name_1toN="toHotels" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="BA445727484C48ACB4BF6310E4FA1FDF" name="IDFlyer">
+				<table_ref uuid="ADBF64ACA2EC44BB84F475C870D6CAC7" name="Hotel"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="DC269891F98E4A11B3FC81E8C2571A85" name="ID">
+				<table_ref uuid="10D10CA80C854F46A1B9D69A387657E2" name="Flyer"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="true" smartlink="true">
+				<color red="255" green="255" blue="255" alpha="0"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<relation uuid="49880652105244768552AFDE07B16973" name_Nto1="toCountry" name_1toN="toHotels" auto_load_Nto1="true" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="38D73761F0FC49DF94BE04647CCC362A" name="IDCountry">
+				<table_ref uuid="ADBF64ACA2EC44BB84F475C870D6CAC7" name="Hotel"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="CD26C97E88A248119DD451E9AC03517D" name="ID">
+				<table_ref uuid="E61E477C1D854BBB90B183AB54CF0955" name="Country"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="true" smartlink="true">
+				<color red="255" green="255" blue="255" alpha="0"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<index kind="regular" unique_keys="true" uuid="335DBE7881A04C41A7F8967FF5BFADC0" type="7">
+		<field_ref uuid="E8E5610FE6CE46938A4EDA6759B396A5" name="ID">
+			<table_ref uuid="ADBF64ACA2EC44BB84F475C870D6CAC7" name="Hotel"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="4E57D44703874CDB9DB2CEC20A04F6EC" type="7">
+		<field_ref uuid="CD26C97E88A248119DD451E9AC03517D" name="ID">
+			<table_ref uuid="E61E477C1D854BBB90B183AB54CF0955" name="Country"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="DA204E0C3C404D1D830EB6945FFEF559" type="7">
+		<field_ref uuid="7A1F7566B24F4862895270F4B14D92D6" name="ID">
+			<table_ref uuid="EADB89645D804D2EA82CF5A867E992AC" name="Continent"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="DD12715BFBA64F838CA0F2C1594D3128" type="7">
+		<field_ref uuid="DC269891F98E4A11B3FC81E8C2571A85" name="ID">
+			<table_ref uuid="10D10CA80C854F46A1B9D69A387657E2" name="Flyer"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="F8DE3E34EE764143B2A4EC2BA002F32E" type="7">
+		<field_ref uuid="4C565B8C2C194104BDA1CDED901E3CE9" name="ID">
+			<table_ref uuid="43FB8E15D814489F8245615E4D4FE3A9" name="Site"/>
+		</field_ref>
+	</index>
+	<base_extra __stringCompHash="icu:68.1.0" __keywordBuildingHash="icu:68.1.0" package_name="Demo4DWritePro" structure_file_name="Demo4DWritePro" data_file_path=":Demo4DWritePro.4DD">
+		<journal_file journal_file_enabled="false"/>
+	</base_extra>
+</base>
