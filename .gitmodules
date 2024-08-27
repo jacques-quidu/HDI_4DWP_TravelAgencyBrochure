@@ -1,0 +1,3 @@
+[submodule "Components/WriteProClasses.4dbase"]
+	path = Components/WriteProClasses.4dbase
+	url = https://github.com/4d-depot/WriteProClasses.git
