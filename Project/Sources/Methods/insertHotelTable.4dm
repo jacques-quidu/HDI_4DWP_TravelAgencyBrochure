@@ -9,141 +9,145 @@ $lastContinent:=""
 var $colHeader : Collection
 $colHeader:=New collection:C1472(""; "Hotel"; "Country"; "Rating"; "Price"; "Restaurant"; "All inclusive"; "Activities"; "Children's club")
 
-$oRange:=WP Text range:C1341(wpDoc; wk end text:K81:164; wk end text:K81:164)
+$oRange:=wpDoc.textRange(wk end text:K81:164; wk end text:K81:164)
 
-WP NEW BOOKMARK:C1415($oRange; "Lodgings")
+wpDoc.newBookmark($oRange; "Lodgings")
 
-WP INSERT BREAK:C1413($oRange; wk section break:K81:187; wk append:K81:179; wk exclude from range:K81:181)
+$oRange.appendBreak(wk section break:K81:187; wk exclude from range:K81:181)
 
 
 // Retrieve the current section
-$section:=WP Get section:C1581($oRange)
+$section:=$oRange.getSection()
 
 // Format the current section
-WP SET ATTRIBUTES:C1342($section; wk page margin top:K81:268; "3cm"; wk page margin left:K81:266; "1.5cm"; wk page margin right:K81:267; "1.5cm")
+$section.setAttributes({pageMarginTop: "3cm"; pageMarginLeft: "1.5cm"; pageMarginRight: "1.5cm"})
 
 // Create the left sub section
-$subSection:=WP New subsection:C1583($section; wk left page:K81:204)
+$subSection:=$section.newSubsection(wk left page:K81:204)
+
 
 // Insert header
-$header:=WP New header:C1586($subSection)
-$oNewRange:=WP Text range:C1341($header; wk start text:K81:165; wk end text:K81:164)
-WP SET TEXT:C1574($oNewRange; "Lodgings"; wk replace:K81:177; wk include in range:K81:180)
-WP SET ATTRIBUTES:C1342($oNewRange; wk style sheet:K81:63; "Title_Right")
-WP SET ATTRIBUTES:C1342($header; wk margin left:K81:11; "2.5cm"; wk margin right:K81:12; "2.5cm")
+$header:=$subSection.newHeader()
+$oNewRange:=$header.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.replaceByText("Lodgings")
+$oNewRange.range.styleSheet:="Title_Right"
+$header.element.marginLeft:="2.5cm"
+$header.element.marginRight:="2.5cm"
 
 // Insert footer
-$footer:=WP New footer:C1587($subSection)
-$oNewRange:=WP Text range:C1341($footer; wk start text:K81:165; wk end text:K81:164)
-ST INSERT EXPRESSION:C1281($oNewRange; "$wp_pageNumber")
-$oNewRange:=WP Text range:C1341($footer; wk start text:K81:165; wk end text:K81:164)
-WP SET ATTRIBUTES:C1342($oNewRange; wk style sheet:K81:63; "PageNumber_Left")
-WP SET ATTRIBUTES:C1342($footer; wk margin left:K81:11; "2.5cm"; wk margin right:K81:12; "2.5cm")
+$footer:=$subSection.newFooter()
+$oNewRange:=$footer.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.appendFormula(Formula:C1597(This:C1470.pageNumber))
+$oNewRange.range.styleSheet:="PageNumber_Left"
+$footer.element.marginLeft:="2.5cm"
+$footer.element.marginRight:="2.5cm"
 
 
 // Retrieve the reference to the right subsection
-$subSection:=WP Get subsection:C1582($section; wk right page:K81:205)
+$subSection:=$section.getSubsection(wk right page:K81:205)
 
 // Insert header
-$header:=WP New header:C1586($subSection)
-$oNewRange:=WP Text range:C1341($header; wk start text:K81:165; wk end text:K81:164)
-WP SET TEXT:C1574($oNewRange; "Lodgings"; wk replace:K81:177; wk include in range:K81:180)
-WP SET ATTRIBUTES:C1342($oNewRange; wk style sheet:K81:63; "Title_Left")
-WP SET ATTRIBUTES:C1342($header; wk margin left:K81:11; "2.5cm"; wk margin right:K81:12; "2.5cm")
+$header:=$subSection.newHeader()
+$oNewRange:=$header.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.replaceByText("Lodgings")
+$oNewRange.range.styleSheet:="Title_Left"
+$header.element.marginLeft:="2.5cm"
+$header.element.marginRight:="2.5cm"
 
 // Insert footer
-$footer:=WP New footer:C1587($subSection)
-$oNewRange:=WP Text range:C1341($footer; wk start text:K81:165; wk end text:K81:164)
-ST INSERT EXPRESSION:C1281($oNewRange; "$wp_pageNumber")
-$oNewRange:=WP Text range:C1341($footer; wk start text:K81:165; wk end text:K81:164)
-WP SET ATTRIBUTES:C1342($oNewRange; wk style sheet:K81:63; "PageNumber_Right")
-WP SET ATTRIBUTES:C1342($footer; wk margin left:K81:11; "2.5cm"; wk margin right:K81:12; "2.5cm")
+$footer:=$subSection.newFooter()
+$oNewRange:=$footer.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.appendFormula(Formula:C1597(This:C1470.pageNumber))
+$oNewRange.range.styleSheet:="PageNumber_Right"
+$footer.element.marginLeft:="2.5cm"
+$footer.element.marginRight:="2.5cm"
+
 
 
 // Insert Lodging table
-$wpTable:=WP Insert table:C1473($oRange; wk append:K81:179; wk include in range:K81:180)
-$wpRow:=WP Table append row:C1474($wpTable; $colHeader[1]; $colHeader[2]; $colHeader[3]; $colHeader[4]; $colHeader[5]; $colHeader[6]; $colHeader[7]; $colHeader[8])
+$wpTable:=$oRange.appendTable()
 
-$info:=WP Get position:C1577($wpRow)
-$firstpage:=$info.page
+// append header row
+$wpRow:=$wpTable.appendRow($colHeader[1]; $colHeader[2]; $colHeader[3]; $colHeader[4]; $colHeader[5]; $colHeader[6]; $colHeader[7]; $colHeader[8])
 
-$oRange:=WP Table get columns:C1476($wpTable; 1; 8)
-WP SET ATTRIBUTES:C1342($oRange; wk width:K81:45; "50pt"; \
-wk font size:K81:66; "10pt"; \
-wk border color:K81:34; "#42cad7")
+$oRange:=$wpTable.getColumns(1; 8)
+$oRange.setAttributes({width: "50pt"; fontSize: "10pt"; borderColor: "#42cad7"})
 
-$oRange:=WP Table get columns:C1476($wpTable; 2; 3)
-WP SET ATTRIBUTES:C1342($oRange; wk width:K81:45; "60pt")
+$oRange:=$wpTable.getColumns(2; 3)
+$oRange.range.width:="60pt"
 
-$oRange:=WP Table get columns:C1476($wpTable; 1; 1)
-WP SET ATTRIBUTES:C1342($oRange; wk width:K81:45; "90pt")
+$oRange:=$wpTable.getColumns(1; 1)
+$oRange.range.width:="90pt"
+
 
 var $hotelSel : cs:C1710.HotelSelection
 var $hotelEnt : cs:C1710.HotelEntity
 $hotelSel:=flyerEnt.toHotels.orderBy("toCountry.toContinent.Name, toCountry.Name, Name")
-For each ($hotelEnt; $hotelSel)
-	
-	If ($lastContinent#$hotelEnt.toCountry.toContinent.Name)
-		$wpRow:=WP Table append row:C1474($wpTable; Uppercase:C13($hotelEnt.toCountry.toContinent.Name); ""; ""; ""; ""; ""; ""; "")
-		WP SET ATTRIBUTES:C1342($wpRow; wk background color:K81:20; "#42cad7")
-		$lastContinent:=$hotelEnt.toCountry.toContinent.Name
-		
-		$info:=WP Get position:C1577($wpRow)
-		If ($info.page#$firstpage)
-			WP TABLE DELETE ROWS:C1693($wpRow)
-		End if 
-	End if 
-	
-	$wpRow:=WP Table append row:C1474($wpTable; \
-		$hotelEnt.Name; \
-		$hotelEnt.toCountry.Name; \
-		Choose:C955(Num:C11($hotelEnt.Rating); ""; "★"; "★★"; "★★★"; "★★★★"; "★★★★★"); \
-		$hotelEnt.Price; \
-		Choose:C955(Num:C11($hotelEnt.Restaurant); ""; "★"; "★★"; "★★★"); \
-		Choose:C955($hotelEnt.AllIncludes; "●"; ""); \
-		Choose:C955($hotelEnt.Animation; "●"; ""); \
-		Choose:C955($hotelEnt.Children; "●"; ""))
-	WP SET ATTRIBUTES:C1342($wpRow; wk background color:K81:20; wk transparent:K81:134)
-	
-	$info:=WP Get position:C1577($wpRow)
-	If ($info.page#$firstpage)
-		// The row is on another page - Insert table header again
-		
-		For ($iCol; 1; 8)
-			
-			// Replace the cell contents
-			$oRange:=WP Table get cells:C1477($wpTable; $iCol; $wpRow.firstRow; 1; 1)
-			$oNewRange:=WP Text range:C1341($oRange; wk start text:K81:165; wk end text:K81:164)
-			WP SET TEXT:C1574($oNewRange; $colHeader[$iCol]; wk replace:K81:177)
-			
-		End for 
-		
-		// Insert continent name again
-		$wpRow:=WP Table append row:C1474($wpTable; Uppercase:C13($hotelEnt.toCountry.toContinent.Name); ""; ""; ""; ""; ""; ""; "")
-		WP SET ATTRIBUTES:C1342($wpRow; wk background color:K81:20; "#42cad7")
-		
-		// Re insert the lodging
-		$wpRow:=WP Table append row:C1474($wpTable; \
-			$hotelEnt.Name; \
-			$hotelEnt.toCountry.Name; \
-			Choose:C955(Num:C11($hotelEnt.Rating); ""; "★"; "★★"; "★★★"; "★★★★"; "★★★★★"); \
-			$hotelEnt.Price; \
-			Choose:C955(Num:C11($hotelEnt.Restaurant); ""; "★"; "★★"; "★★★"); \
-			Choose:C955($hotelEnt.AllIncludes; "●"; ""); \
-			Choose:C955($hotelEnt.Animation; "●"; ""); \
-			Choose:C955($hotelEnt.Children; "●"; ""))
-		WP SET ATTRIBUTES:C1342($wpRow; wk background color:K81:20; wk transparent:K81:134)
-		
-		$firstpage:=$info.page
-	End if 
-	
-	
-	If ($iHotel=1)
-		WP SET ATTRIBUTES:C1342($wpRow; wk background color:K81:20; wk transparent:K81:134)
-	End if 
-	
-	
-End for each 
 
-$oRange:=WP Table get columns:C1476($wpTable; 1; 8)
-WP SET ATTRIBUTES:C1342($oRange; wk text align:K81:49; wk center:K81:99)
+//set document data context and table datasource
+
+var $data : Object
+$data:=New object:C1471("hotels"; $hotelSel)
+wpDoc.setDataContext($data)
+$wpTable.table.dataSource:=Formula:C1597(This:C1470.data.hotels)
+
+//add break row for continent name
+
+$wpRow:=$wpTable.appendRow(""; ""; ""; ""; ""; ""; ""; "")
+$wpRow.element.backgroundColor:="#42cad7"
+
+var $breakFormula : Object
+$breakFormula:=Formula:C1597(Uppercase:C13(This:C1470.item.toCountry.toContinent.Name))
+$wpRow.element.breakFormula:=$breakFormula
+
+$oRange:=$wpTable.getCells(1; $wpTable.table.rowCount; 1; 1)
+$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.replaceByFormula($breakFormula)
+
+
+//add data row
+
+$wpRow:=$wpTable.appendRow(""; ""; ""; ""; ""; ""; ""; "")
+//append row on default copy attributes from previous row so we need to reset break formula and background here
+$wpRow.element.breakFormula:=Null:C1517
+$wpRow.element.backgroundColor:=wk transparent:K81:134
+
+
+$oRange:=$wpTable.getCells(1; $wpTable.table.rowCount; 1; 1)
+$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.replaceByFormula(Formula:C1597(This:C1470.item.Name))
+
+$oRange:=$wpTable.getCells(2; $wpTable.table.rowCount; 1; 1)
+$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.replaceByFormula(Formula:C1597(This:C1470.item.toCountry.Name))
+
+$oRange:=$wpTable.getCells(3; $wpTable.table.rowCount; 1; 1)
+$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Rating); ""; "★"; "★★"; "★★★"; "★★★★"; "★★★★★")))
+
+$oRange:=$wpTable.getCells(4; $wpTable.table.rowCount; 1; 1)
+$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.replaceByFormula(Formula:C1597(This:C1470.item.Price))
+
+$oRange:=$wpTable.getCells(5; $wpTable.table.rowCount; 1; 1)
+$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Restaurant); ""; "★"; "★★"; "★★★")))
+
+$oRange:=$wpTable.getCells(6; $wpTable.table.rowCount; 1; 1)
+$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.AllIncludes; "●"; "")))
+
+$oRange:=$wpTable.getCells(7; $wpTable.table.rowCount; 1; 1)
+$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Animation; "●"; "")))
+
+$oRange:=$wpTable.getCells(8; $wpTable.table.rowCount; 1; 1)
+$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
+$oNewRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Children; "●"; "")))
+
+$wpTable.table.headerRowCount:=1
+
+$oRange:=$wpTable.getColumns(1; 8)
+$oRange.range.textAlign:=wk center:K81:99
+
+

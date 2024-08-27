@@ -73,28 +73,26 @@ If ($flyerSel.length=1)
 	
 	insertSite
 	
-	If (False:C215)
-		
-		/////////////////////////////////////////////
-		// List of Hotels
-		//
-		// Insert table
-		// Loop on records to populate the table
-		// Insert unicode characters
-		// Insert left and right subsection
-		// Insert header and footer
-		
-		insertHotelTable
-		
-		
-		/////////////////////////////////////////////
-		// Back cover
-		//
-		// Image in absolute position
-		// Insert plain text from database
-		
-		insertBackCover
-	End if 
+	
+	/////////////////////////////////////////////
+	// List of Hotels
+	//
+	// Insert table
+	// Loop on records to populate the table
+	// Insert unicode characters
+	// Insert left and right subsection
+	// Insert header and footer
+	
+	insertHotelTable
+	
+	
+	/////////////////////////////////////////////
+	// Back cover
+	//
+	// Image in absolute position
+	// Insert plain text from database
+	
+	insertBackCover
 	
 	var $bookmarks : Collection
 	$bookmarks:=wpDoc.getBookmarks()

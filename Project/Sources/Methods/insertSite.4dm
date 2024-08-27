@@ -56,25 +56,25 @@ For each ($siteEnt; $siteSel)
 	$oRange:=$footer.textRange(wk start text:K81:165; wk end text:K81:164)
 	
 	// Insert table in the footer
-	//$wpTable:=$oRange.appendTable(wk include in range; 0; 0) //FIXME:la fonction devrait retourner la table Roland ? 
+	$wpTable:=$oRange.appendTable()
 	//(aussi tous les params optionnels et nbcCol+nbRow en premier de préférence avant le updateRange qui n'est jamais utilisé de toute façon ou presque)
-	var $table : Object
-	$table:=WP Insert table:C1473($oRange.range; wk append:K81:179)
-	$wpTable:=cs:C1710.wp.table.new($table)
+	//var $table : Object
+	//$table:=WP Insert table($oRange.range; wk append)
+	//$wpTable:=cs.wp.table.new($table)
 	
 	// Odd or Even page
 	$info:=$oRange.getPosition()
 	$pageNumber:=$info.page
 	If (($pageNumber%2)=0)
-		//$wpRow:=$wpTable.appendRow("page"; $siteEnt.Condition) //FIXME: ne marche pas non plus Roland ?
-		$wpRow:=WP Table append row:C1474($wpTable.table; "page"; $siteEnt.Condition)
+		$wpRow:=$wpTable.appendRow("page"; $siteEnt.Condition)
+		//$wpRow:=WP Table append row($wpTable.table; "page"; $siteEnt.Condition)
 		$pair1:=wk right:K81:96
 		$pair2:=wk left:K81:95
 		$cell1:=2
 		$cell2:=1
 	Else 
-		//$wpRow:=$wpTable.appendRow($siteEnt.Condition; "page") //FIXME: ne marche pas non plus Roland ?
-		$wpRow:=WP Table append row:C1474($wpTable.table; $siteEnt.Condition; "page")
+		$wpRow:=$wpTable.appendRow($siteEnt.Condition; "page")
+		//$wpRow:=WP Table append row($wpTable.table; $siteEnt.Condition; "page")
 		$pair1:=wk left:K81:95
 		$pair2:=wk right:K81:96
 		$cell1:=1
