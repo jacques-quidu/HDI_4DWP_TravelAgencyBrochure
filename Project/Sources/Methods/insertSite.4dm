@@ -12,71 +12,69 @@ $siteSel:=flyerEnt.toSites.orderBy("toCountry.toContinent.Name, toCountry.Name, 
 // loop on Site
 For each ($siteEnt; $siteSel)
 	
-	$oRange:=WP Text range:C1341(wpDoc; wk end text:K81:164; wk end text:K81:164)
-	WP NEW BOOKMARK:C1415($oRange; Replace string:C233($siteEnt.Name; " "; ""))
+	$oRange:=wpDoc.textRange(wk end text:K81:164; wk end text:K81:164)
+	wpDoc.newBookmark($oRange; Replace string:C233($siteEnt.Name; " "; ""))
 	
 	// Insert text
-	WP SET TEXT:C1574($oRange; $siteEnt.Description; wk append:K81:179; wk include in range:K81:180)
+	$oRange.appendText($siteEnt.Description)
 	
 	// Insert column break
-	WP INSERT BREAK:C1413($oRange; wk column break:K81:254; wk append:K81:179)
+	$oRange.appendBreak(wk column break:K81:254)
 	
 	// Insert text
-	$oRange:=WP Text range:C1341(wpDoc; wk end text:K81:164; wk end text:K81:164)
-	WP SET TEXT:C1574($oRange; $siteEnt.Highlights+Char:C90(Carriage return:K15:38); wk append:K81:179; wk include in range:K81:180)
+	$oRange:=wpDoc.textRange(wk end text:K81:164; wk end text:K81:164)
+	$oRange.appendText($siteEnt.Highlights+Char:C90(Carriage return:K15:38))
 	
 	// Format text
-	$colParagraph:=WP Get elements:C1550($oRange; wk type paragraph:K81:191)
+	$colParagraph:=$oRange.getElements(wk type paragraph:K81:191)
 	
 	For ($col; 0; $colParagraph.length-1)
-		WP SET ATTRIBUTES:C1342($colParagraph[$col]; wk background color:K81:20; "#42cad7"; \
-			wk padding left:K81:16; "5pt"; \
-			wk padding right:K81:17; "5pt")
+		$colParagraph[$col].setAttributes({backgroundColor: "#42cad7"; paddingLeft: "5pt"; paddingRight: "5pt"})
 		
 		If ($col=0)
-			WP SET ATTRIBUTES:C1342($colParagraph[$col]; wk padding top:K81:18; "5pt"; \
-				wk padding bottom:K81:19; "10pt"; \
-				wk text align:K81:49; wk center:K81:99; \
-				wk font bold:K81:68; wk true:K81:174)
+			$colParagraph[$col].setAttributes({paddingTop: "5pt"; paddingBottom: "10pt"; textAlign: wk center:K81:99; fontBold: wk true:K81:174})
 		Else 
-			WP SET ATTRIBUTES:C1342($colParagraph[$col]; wk text align:K81:49; wk left:K81:95; \
-				wk padding bottom:K81:19; "5pt"; \
-				wk font bold:K81:68; wk false:K81:173)
+			$colParagraph[$col].setAttributes({paddingBottom: "5pt"; textAlign: wk left:K81:95; fontBold: wk false:K81:173})
 		End if 
 		
 	End for 
 	
-	WP RESET ATTRIBUTES:C1344($colParagraph[$colParagraph.length-1]; wk background color:K81:20; wk padding left:K81:16; wk padding right:K81:17; wk padding top:K81:18)
+	$colParagraph[$colParagraph.length-1].resetAttributes([wk background color:K81:20; wk padding left:K81:16; wk padding right:K81:17; wk padding top:K81:18])
+	
 	
 	// Insert break section
-	WP INSERT BREAK:C1413($oRange; wk section break:K81:187; wk append:K81:179)
+	$oRange.appendBreak(wk section break:K81:187)
 	
 	// Retrieve the current section
-	$section:=WP Get section:C1581($oRange)
+	$section:=$oRange.getSection()
 	
 	// Format the current section
-	WP SET ATTRIBUTES:C1342($section; wk column count:K81:199; 3)
-	WP SET ATTRIBUTES:C1342($section; wk column spacing:K81:249; "0.5cm")
-	WP SET ATTRIBUTES:C1342($section; wk page margin top:K81:268; "13cm")
+	$section.setAttributes({columnCount: 3; columnSpacing: "0.5cm"; pageMarginTop: "13cm"})
 	
 	// Insert footer in the current section
-	$footer:=WP New footer:C1587($section)
-	$oRange:=WP Text range:C1341($footer; wk start text:K81:165; wk end text:K81:164)
+	$footer:=$section.newFooter()
+	$oRange:=$footer.textRange(wk start text:K81:165; wk end text:K81:164)
 	
 	// Insert table in the footer
-	$wpTable:=WP Insert table:C1473($oRange; wk append:K81:179; wk include in range:K81:180)
+	//$wpTable:=$oRange.appendTable(wk include in range; 0; 0) //FIXME:la fonction devrait retourner la table Roland ? 
+	//(aussi tous les params optionnels et nbcCol+nbRow en premier de préférence avant le updateRange qui n'est jamais utilisé de toute façon ou presque)
+	var $table : Object
+	$table:=WP Insert table:C1473($oRange.range; wk append:K81:179)
+	$wpTable:=cs:C1710.wp.table.new($table)
 	
 	// Odd or Even page
-	$info:=WP Get position:C1577($oRange)
+	$info:=$oRange.getPosition()
 	$pageNumber:=$info.page
 	If (($pageNumber%2)=0)
-		$wpRow:=WP Table append row:C1474($wpTable; "page"; $siteEnt.Condition)
+		//$wpRow:=$wpTable.appendRow("page"; $siteEnt.Condition) //FIXME: ne marche pas non plus Roland ?
+		$wpRow:=WP Table append row:C1474($wpTable.table; "page"; $siteEnt.Condition)
 		$pair1:=wk right:K81:96
 		$pair2:=wk left:K81:95
 		$cell1:=2
 		$cell2:=1
 	Else 
-		$wpRow:=WP Table append row:C1474($wpTable; $siteEnt.Condition; "page")
+		//$wpRow:=$wpTable.appendRow($siteEnt.Condition; "page") //FIXME: ne marche pas non plus Roland ?
+		$wpRow:=WP Table append row:C1474($wpTable.table; $siteEnt.Condition; "page")
 		$pair1:=wk left:K81:95
 		$pair2:=wk right:K81:96
 		$cell1:=1
@@ -84,75 +82,52 @@ For each ($siteEnt; $siteSel)
 	End if 
 	
 	// Format table in the footer
-	$oRange:=WP Table get cells:C1477($wpTable; $cell1; 1)
-	WP SET ATTRIBUTES:C1342($oRange; wk text color:K81:64; "#66746B"; wk font size:K81:66; "8pt"; wk font:K81:69; "Helvetica Neue"; wk text align:K81:49; $pair1)
-	WP SET ATTRIBUTES:C1342($oRange; wk width:K81:45; "13.5cm"; wk border style:K81:29; wk none:K81:91)
+	$oRange:=$wpTable.getCells($cell1; 1)
+	$oRange.setAttributes({color: "#66746B"; fontSize: "8pt"; font: "Helvetica Neue"; textAlign: $pair1; width: "13.5cm"; borderStyle: wk none:K81:91})
 	
-	$oRange:=WP Table get cells:C1477($wpTable; $cell2; 1)
-	WP SET ATTRIBUTES:C1342($oRange; wk font size:K81:66; "16pt"; wk font:K81:69; "Helvetica Neue"; wk text align:K81:49; $pair2)
-	WP SET ATTRIBUTES:C1342($oRange; wk width:K81:45; "2cm"; wk border style:K81:29; wk none:K81:91)
+	$oRange:=$wpTable.getCells($cell2; 1)
+	$oRange.setAttributes({fontSize: "16pt"; font: "Helvetica Neue"; textAlign: $pair2; width: "2cm"; borderStyle: wk none:K81:91})
 	
 	// Insert page number expression in footer
-	$colParagraph:=WP Get elements:C1550($oRange)
-	$oRange:=WP Text range:C1341($colParagraph[0]; wk start text:K81:165; wk end text:K81:164)
-	WP INSERT FORMULA:C1703($oRange; Formula:C1597(This:C1470.pageNumber); wk replace:K81:177)
-	
+	$colParagraph:=$oRange.getElements(wk type paragraph:K81:191)
+	$oRange:=$colParagraph[0].textRange(wk start text:K81:165; wk end text:K81:164)
+	$oRange.replaceByFormula(Formula:C1597(This:C1470.pageNumber))
 	
 	//Insert site image
-	$obPict:=WP Add picture:C1536(wpDoc; $siteEnt.Image1)
-	WP SET ATTRIBUTES:C1342($obPict; wk anchor section:K81:228; $section.sectionIndex)
-	WP SET ATTRIBUTES:C1342($obPict; wk anchor origin:K81:235; wk paper box:K81:215; \
-		wk anchor vertical offset:K81:238; "80pt"; \
-		wk anchor horizontal align:K81:237; $pair1)
+	$obPict:=wpDoc.newAnchoredPicture($siteEnt.Image1)
+	$obPict.setAttributes({anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "80pt"; anchorHorizontalAlign: $pair1})
 	
-	$obPict:=WP Add picture:C1536(wpDoc; $siteEnt.Image2)
-	WP SET ATTRIBUTES:C1342($obPict; wk anchor section:K81:228; $section.sectionIndex)
-	WP SET ATTRIBUTES:C1342($obPict; wk anchor origin:K81:235; wk paper box:K81:215; \
-		wk anchor vertical offset:K81:238; "80pt"; \
-		wk anchor horizontal align:K81:237; $pair2)
+	$obPict:=wpDoc.newAnchoredPicture($siteEnt.Image2)
+	$obPict.setAttributes({anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "80pt"; anchorHorizontalAlign: $pair2})
 	
-	$obPict:=WP Add picture:C1536(wpDoc; $siteEnt.Image3)
-	WP SET ATTRIBUTES:C1342($obPict; wk anchor section:K81:228; $section.sectionIndex)
-	WP SET ATTRIBUTES:C1342($obPict; wk anchor origin:K81:235; wk paper box:K81:215; \
-		wk anchor vertical offset:K81:238; "213pt"; \
-		wk anchor horizontal align:K81:237; $pair2)
+	$obPict:=wpDoc.newAnchoredPicture($siteEnt.Image3)
+	$obPict.setAttributes({anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "213pt"; anchorHorizontalAlign: $pair2})
 	
 	// Insert continent map
-	$obPict:=WP Add picture:C1536(wpDoc; $siteEnt.toCountry.toContinent.Image)
-	WP SET ATTRIBUTES:C1342($obPict; wk anchor section:K81:228; $section.sectionIndex)
-	WP SET ATTRIBUTES:C1342($obPict; wk anchor origin:K81:235; wk paper box:K81:215; \
-		wk anchor horizontal offset:K81:236; "20pt"; \
-		wk anchor vertical offset:K81:238; "0.8cm"; \
-		wk anchor horizontal align:K81:237; $pair2)
+	$obPict:=wpDoc.newAnchoredPicture($siteEnt.toCountry.toContinent.Image)
+	$obPict.setAttributes({anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorHorizontalOffset: "20pt"; anchorVerticalOffset: "0.8cm"; anchorHorizontalAlign: $pair2})
 	
 	
 	// Insert header in the current section
-	$header:=WP New header:C1586($section)
-	$oRange:=WP Text range:C1341($header; wk start text:K81:165; wk end text:K81:164)
-	WP SET TEXT:C1574($oRange; $siteEnt.Name+" - "+Uppercase:C13($siteEnt.toCountry.Name); wk replace:K81:177; wk include in range:K81:180)
-	WP SET ATTRIBUTES:C1342($oRange; wk font:K81:69; "Helvetica Neue"; \
-		wk font size:K81:66; 24; \
-		wk text color:K81:64; "#2AB8C6"; \
-		wk text align:K81:49; $pair1)
-	
+	$header:=$section.newHeader()
+	$oRange:=$header.textRange(wk start text:K81:165; wk end text:K81:164)
+	$oRange.replaceByText($siteEnt.Name+" - "+Uppercase:C13($siteEnt.toCountry.Name))
+	$oRange.setAttributes({font: "Helvetica Neue"; fontSize: 24; color: "#2AB8C6"; textAlign: $pair1})
 	
 	
 	// Insert the continent name in the summary page
 	If ($lastContinent#$siteEnt.toCountry.toContinent.Name)
-		wpSummaryTable:=WP Text range:C1341(wpSummaryTable; wpSummaryTable.end; wpSummaryTable.end)
-		WP SET TEXT:C1574(wpSummaryTable; Char:C90(Carriage return:K15:38)+$siteEnt.toCountry.toContinent.Name+Char:C90(Carriage return:K15:38); wk append:K81:179; wk include in range:K81:180)
-		WP SET ATTRIBUTES:C1342(wpSummaryTable; wk font size:K81:66; 14; wk font bold:K81:68; wk true:K81:174)
+		wpSummaryTable:=wpSummaryTable.textRange(wpSummaryTable.range.end; wpSummaryTable.range.end)
+		wpSummaryTable.appendText(Char:C90(Carriage return:K15:38)+$siteEnt.toCountry.toContinent.Name+Char:C90(Carriage return:K15:38))
+		wpSummaryTable.setAttributes({fontSize: 14; fontBold: wk true:K81:174})
 		$lastContinent:=$siteEnt.toCountry.toContinent.Name
 	End if 
 	
 	// Insert the site name and the page number in the summary page
-	wpSummaryTable:=WP Text range:C1341(wpSummaryTable; wpSummaryTable.end; wpSummaryTable.end)
-	WP SET TEXT:C1574(wpSummaryTable; $siteEnt.Name+" - "+Uppercase:C13($siteEnt.toCountry.Name)+Char:C90(Tab:K15:37); wk append:K81:179; wk include in range:K81:180)
-	wpSummaryTable:=WP Text range:C1341(wpSummaryTable; wpSummaryTable.end; wpSummaryTable.end)
-	WP SET TEXT:C1574(wpSummaryTable; String:C10($pageNumber)+Char:C90(Carriage return:K15:38); wk append:K81:179; wk include in range:K81:180)
-	WP SET ATTRIBUTES:C1342(wpSummaryTable; wk font size:K81:66; 12)
-	
-	
-	WP SET LINK:C1642(wpSummaryTable; New object:C1471("bookmark"; Replace string:C233($siteEnt.Name; " "; "")))
+	wpSummaryTable.appendText($siteEnt.Name+" - "+Uppercase:C13($siteEnt.toCountry.Name)+Char:C90(Tab:K15:37))
+	wpSummaryTable:=wpSummaryTable.textRange(wpSummaryTable.range.end; wpSummaryTable.range.end)
+	wpSummaryTable.appendText(String:C10($pageNumber)+Char:C90(Carriage return:K15:38))
+	wpSummaryTable.setAttributes({fontSize: 12})
+	wpSummaryTable.setLink(New object:C1471("bookmark"; Replace string:C233($siteEnt.Name; " "; "")))
 	
 End for each 

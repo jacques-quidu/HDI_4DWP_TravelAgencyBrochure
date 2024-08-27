@@ -6,7 +6,7 @@ var flyerEnt : cs:C1710.FlyerEntity
 var wpSummaryTable : Object
 wpSummaryTable:=New object:C1471()
 
-wpDoc:=WP New:C1317
+wpDoc:=cs:C1710.wp.document.new()
 
 
 $flyerSel:=ds:C1482.Flyer.query("ID=1")
@@ -70,32 +70,35 @@ If ($flyerSel.length=1)
 	// Insert table in footer
 	// Insert 3 columns
 	
+	
 	insertSite
 	
+	If (False:C215)
+		
+		/////////////////////////////////////////////
+		// List of Hotels
+		//
+		// Insert table
+		// Loop on records to populate the table
+		// Insert unicode characters
+		// Insert left and right subsection
+		// Insert header and footer
+		
+		insertHotelTable
+		
+		
+		/////////////////////////////////////////////
+		// Back cover
+		//
+		// Image in absolute position
+		// Insert plain text from database
+		
+		insertBackCover
+	End if 
 	
-	/////////////////////////////////////////////
-	// List of Hotels
-	//
-	// Insert table
-	// Loop on records to populate the table
-	// Insert unicode characters
-	// Insert left and right subsection
-	// Insert header and footer
-	
-	insertHotelTable
-	
-	
-	/////////////////////////////////////////////
-	// Back cover
-	//
-	// Image in absolute position
-	// Insert plain text from database
-	
-	insertBackCover
-	
-	
-	
+	var $bookmarks : Collection
+	$bookmarks:=wpDoc.getBookmarks()
 	ARRAY TEXT:C222(arrBookmarks; 0)
-	WP GET BOOKMARKS:C1417(wpDoc; arrBookmarks)
+	COLLECTION TO ARRAY:C1562($bookmarks; arrBookmarks)
 	
 End if 

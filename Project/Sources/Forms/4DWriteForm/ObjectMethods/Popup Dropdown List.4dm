@@ -4,8 +4,8 @@ Case of
 		
 		var $oRange : Object
 		
-		$oRange:=WP Bookmark range:C1416(wpDoc; arrBookmarks{arrBookmarks})
+		$oRange:=WP Bookmark range:C1416(wpDocForm; arrBookmarks{arrBookmarks})
 		
-		WP SELECT:C1348(wpDoc; $oRange)
+		WP SELECT:C1348(wpDocForm; $oRange)
 		
 End case 

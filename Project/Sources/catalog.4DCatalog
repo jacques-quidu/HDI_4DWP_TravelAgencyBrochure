@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE base SYSTEM "http://www.4d.com/dtd/2007/base.dtd" >
-<base name="Demo4DWritePro" uuid="28072B720CA24C41B52FA60310F7C571" collation_locale="en">
+<base name="HDI_4DWP_TravelAgencyBrochure" uuid="28072B720CA24C41B52FA60310F7C571" collation_locale="en">
 	<schema name="DEFAULT_SCHEMA"/>
 	<table name="Site" uuid="43FB8E15D814489F8245615E4D4FE3A9" id="1">
 		<field name="ID" uuid="4C565B8C2C194104BDA1CDED901E3CE9" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
@@ -83,7 +83,7 @@
 			</editor_table_info>
 		</table_extra>
 	</table>
-	<relation uuid="025B42477EC44323BC238AE7A62858CC" name_Nto1="Link_1" name_1toN="toSites" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+	<relation uuid="025B42477EC44323BC238AE7A62858CC" name_Nto1="Link_1" name_1toN="toSites" state="1">
 		<related_field kind="source">
 			<field_ref uuid="955EE7CB66204D1DA8AAAC06B4895774" name="IDFlyer">
 				<table_ref uuid="43FB8E15D814489F8245615E4D4FE3A9" name="Site"/>
@@ -100,7 +100,7 @@
 			</editor_relation_info>
 		</relation_extra>
 	</relation>
-	<relation uuid="9167755F9FEE44019B19B9F3B34D151C" name_Nto1="toContinent" name_1toN="toCountries" auto_load_Nto1="true" auto_load_1toN="false" foreign_key="false" state="1">
+	<relation uuid="9167755F9FEE44019B19B9F3B34D151C" name_Nto1="toContinent" name_1toN="toCountries" auto_load_Nto1="true" state="1">
 		<related_field kind="source">
 			<field_ref uuid="BDEDCC6F9EF54226BB0AF22B93F897F4" name="IDContinent">
 				<table_ref uuid="E61E477C1D854BBB90B183AB54CF0955" name="Country"/>
@@ -117,7 +117,7 @@
 			</editor_relation_info>
 		</relation_extra>
 	</relation>
-	<relation uuid="00F2E55F84A34DC19FF3C09937C69050" name_Nto1="toCountry" name_1toN="toSite" auto_load_Nto1="true" auto_load_1toN="false" foreign_key="false" state="1">
+	<relation uuid="00F2E55F84A34DC19FF3C09937C69050" name_Nto1="toCountry" name_1toN="toSite" auto_load_Nto1="true" state="1">
 		<related_field kind="source">
 			<field_ref uuid="962D7F1713884D71866306B1021487D9" name="IDCountry">
 				<table_ref uuid="43FB8E15D814489F8245615E4D4FE3A9" name="Site"/>
@@ -134,7 +134,7 @@
 			</editor_relation_info>
 		</relation_extra>
 	</relation>
-	<relation uuid="E53A8F94C9EF41C3894400F55D6E1DA2" name_Nto1="toFlyer" name_1toN="toHotels" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+	<relation uuid="E53A8F94C9EF41C3894400F55D6E1DA2" name_Nto1="toFlyer" name_1toN="toHotels" state="1">
 		<related_field kind="source">
 			<field_ref uuid="BA445727484C48ACB4BF6310E4FA1FDF" name="IDFlyer">
 				<table_ref uuid="ADBF64ACA2EC44BB84F475C870D6CAC7" name="Hotel"/>
@@ -151,7 +151,7 @@
 			</editor_relation_info>
 		</relation_extra>
 	</relation>
-	<relation uuid="49880652105244768552AFDE07B16973" name_Nto1="toCountry" name_1toN="toHotels" auto_load_Nto1="true" auto_load_1toN="false" foreign_key="false" state="1">
+	<relation uuid="49880652105244768552AFDE07B16973" name_Nto1="toCountry" name_1toN="toHotels" auto_load_Nto1="true" state="1">
 		<related_field kind="source">
 			<field_ref uuid="38D73761F0FC49DF94BE04647CCC362A" name="IDCountry">
 				<table_ref uuid="ADBF64ACA2EC44BB84F475C870D6CAC7" name="Hotel"/>
@@ -193,7 +193,7 @@
 			<table_ref uuid="43FB8E15D814489F8245615E4D4FE3A9" name="Site"/>
 		</field_ref>
 	</index>
-	<base_extra __stringCompHash="icu:68.1.0" __keywordBuildingHash="icu:68.1.0" package_name="Demo4DWritePro" structure_file_name="Demo4DWritePro" data_file_path=":Demo4DWritePro.4DD">
+	<base_extra package_name="Demo4DWritePro" structure_file_name="Demo4DWritePro" data_file_path=":Demo4DWritePro.4DD">
 		<journal_file journal_file_enabled="false"/>
 	</base_extra>
 </base>

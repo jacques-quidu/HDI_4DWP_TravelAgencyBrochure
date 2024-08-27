@@ -68,7 +68,7 @@
 					"height": 590,
 					"sizingX": "grow",
 					"sizingY": "grow",
-					"dataSource": "wpDoc",
+					"dataSource": "wpDocForm",
 					"hideFocusRing": true,
 					"scrollbarVertical": "automatic",
 					"scrollbarHorizontal": "automatic",
@@ -115,11 +115,24 @@
 					"width": 185,
 					"height": 16,
 					"sizingX": "move"
+				},
+				"Button": {
+					"type": "button",
+					"text": "New document",
+					"top": 20,
+					"left": 931,
+					"width": 143,
+					"height": 20,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/Button.4dm",
+					"sizingX": "move"
 				}
 			}
 		}
 	],
-	"geometryStamp": 77,
+	"geometryStamp": 83,
 	"rightMargin": 20,
 	"bottomMargin": 20,
 	"$4d": {

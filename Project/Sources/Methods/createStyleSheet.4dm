@@ -2,91 +2,112 @@
 var $stylesheet : Object
 
 // Normal
-$stylesheet:=WP Get style sheet:C1656(wpDoc; "Normal")
-WP SET ATTRIBUTES:C1342($stylesheet; wk font family:K81:65; "Helvetica Neue"; wk text align:K81:49; wk left:K81:95)
+
+$styleSheet:=wpDoc.getStyleSheet("Normal")
+$styleSheet.setAttributes({fontFamily: "Helvetica Neue"; textAlign: wk left:K81:95})
 
 
 // Title
-$stylesheet:=WP New style sheet:C1650(wpDoc; wk type paragraph:K81:191; "Main_Title")
-WP SET ATTRIBUTES:C1342($stylesheet; \
-wk font:K81:69; "Helvetica Neue"; \
-wk font size:K81:66; "48pt"; \
-wk font bold:K81:68; wk true:K81:174; \
-wk text color:K81:64; "#363636"; \
-wk text align:K81:49; wk center:K81:99)
+
+$styleSheet:=wpDoc.newStyleSheet(wk type paragraph:K81:191; "Main_Title")
+
+var $attributes : Object
+
+$attributes:=New object:C1471
+$attributes[wk font:K81:69]:="Helvetica Neue"
+$attributes[wk font size:K81:66]:="48pt"
+$attributes[wk font bold:K81:68]:=wk true:K81:174
+$attributes[wk text color:K81:64]:="#363636"
+$attributes[wk text align:K81:49]:=wk center:K81:99
+$styleSheet.setAttributes($attributes)
 
 
 // SubTitle
-$stylesheet:=WP New style sheet:C1650(wpDoc; wk type paragraph:K81:191; "Main_SubTitle")
-WP SET ATTRIBUTES:C1342($stylesheet; \
-wk font:K81:69; "Helvetica Neue"; \
-wk font size:K81:66; "32pt"; \
-wk text color:K81:64; "#2AB8C6"; \
-wk text align:K81:49; wk center:K81:99)
+
+$styleSheet:=wpDoc.newStyleSheet(wk type paragraph:K81:191; "Main_SubTitle")
+
+$attributes[wk font size:K81:66]:="32pt"
+$attributes[wk font bold:K81:68]:=wk false:K81:173
+$attributes[wk text color:K81:64]:="#2AB8C6"
+$styleSheet.setAttributes($attributes)
+
 
 // Edito_Title
-$stylesheet:=WP New style sheet:C1650(wpDoc; wk type paragraph:K81:191; "Edito_Title")
-WP SET ATTRIBUTES:C1342($stylesheet; \
-wk font:K81:69; "Helvetica Neue"; \
-wk padding left:K81:16; "2cm"; \
-wk padding right:K81:17; "2cm"; \
-wk padding bottom:K81:19; "0.5cm"; \
-wk text align:K81:49; wk left:K81:95; \
-wk text color:K81:64; "#222222"; \
-wk font bold:K81:68; wk true:K81:174; \
-wk font size:K81:66; "20pt")
+
+$styleSheet:=wpDoc.newStyleSheet(wk type paragraph:K81:191; "Edito_Title")
+$attributes:=New object:C1471
+$attributes[wk font:K81:69]:="Helvetica Neue"
+$attributes[wk padding left:K81:16]:="2cm"
+$attributes[wk padding right:K81:17]:="2cm"
+$attributes[wk padding bottom:K81:19]:="0.5cm"
+$attributes[wk text align:K81:49]:=wk left:K81:95
+$attributes[wk text color:K81:64]:="#222222"
+$attributes[wk font bold:K81:68]:=wk true:K81:174
+$attributes[wk font size:K81:66]:="20pt"
+$styleSheet.setAttributes($attributes)
+
 
 // Edito_Text
-$stylesheet:=WP New style sheet:C1650(wpDoc; wk type paragraph:K81:191; "Edito_Text")
-WP SET ATTRIBUTES:C1342($stylesheet; \
-wk font:K81:69; "Helvetica Neue"; \
-wk padding left:K81:16; "2cm"; \
-wk padding right:K81:17; "2cm"; \
-wk padding bottom:K81:19; "0.5cm"; \
-wk text align:K81:49; wk left:K81:95; \
-wk text color:K81:64; "#222222"; \
-wk font bold:K81:68; wk false:K81:173; \
-wk font size:K81:66; "12pt")
+
+$styleSheet:=wpDoc.newStyleSheet(wk type paragraph:K81:191; "Edito_Text")
+$attributes[wk font bold:K81:68]:=wk false:K81:173
+$attributes[wk font size:K81:66]:="12pt"
+$styleSheet.setAttributes($attributes)
+
 
 // Title
-$stylesheet:=WP New style sheet:C1650(wpDoc; wk type paragraph:K81:191; "Title_Left")
-WP SET ATTRIBUTES:C1342($stylesheet; \
-wk font:K81:69; "Helvetica Neue"; \
-wk font size:K81:66; 24; \
-wk text color:K81:64; "#2AB8C6"; \
-wk text align:K81:49; wk left:K81:95)
 
-$stylesheet:=WP New style sheet:C1650(wpDoc; wk type paragraph:K81:191; "Title_Right")
-WP SET ATTRIBUTES:C1342($stylesheet; \
-wk font:K81:69; "Helvetica Neue"; \
-wk font size:K81:66; 24; \
-wk text color:K81:64; "#2AB8C6"; \
-wk text align:K81:49; wk right:K81:96)
+$styleSheet:=wpDoc.newStyleSheet(wk type paragraph:K81:191; "Title_Left")
+
+$attributes:=New object:C1471
+$attributes[wk font:K81:69]:="Helvetica Neue"
+$attributes[wk font size:K81:66]:="24pt"
+$attributes[wk text color:K81:64]:="#2AB8C6"
+$attributes[wk text align:K81:49]:=wk left:K81:95
+$styleSheet.setAttributes($attributes)
+
+
+$styleSheet:=wpDoc.newStyleSheet(wk type paragraph:K81:191; "Title_Right")
+
+$attributes[wk text align:K81:49]:=wk right:K81:96
+$styleSheet.setAttributes($attributes)
+
 
 // BackCover_Title
-$stylesheet:=WP New style sheet:C1650(wpDoc; wk type paragraph:K81:191; "BackCover_Title")
-WP SET ATTRIBUTES:C1342($stylesheet; \
-wk font:K81:69; "Helvetica Neue"; \
-wk font size:K81:66; "48pt"; \
-wk font bold:K81:68; wk true:K81:174; \
-wk text color:K81:64; "#FFFFFF"; \
-wk text align:K81:49; wk center:K81:99)
+$styleSheet:=wpDoc.newStyleSheet(wk type paragraph:K81:191; "BackCover_Title")
+
+$attributes:=New object:C1471
+$attributes[wk font:K81:69]:="Helvetica Neue"
+$attributes[wk font size:K81:66]:="48pt"
+$attributes[wk font bold:K81:68]:=wk true:K81:174
+$attributes[wk text color:K81:64]:="#FFFFFF"
+$attributes[wk text align:K81:49]:=wk center:K81:99
+$styleSheet.setAttributes($attributes)
+
 
 // BackCover_Text
-$stylesheet:=WP New style sheet:C1650(wpDoc; wk type paragraph:K81:191; "BackCover_Text")
-WP SET ATTRIBUTES:C1342($stylesheet; \
-wk font:K81:69; "Helvetica Neue"; \
-wk font size:K81:66; "32pt"; \
-wk font bold:K81:68; wk false:K81:173; \
-wk text color:K81:64; "#FFFFFF"; \
-wk text align:K81:49; wk center:K81:99)
+$styleSheet:=wpDoc.newStyleSheet(wk type paragraph:K81:191; "BackCover_Text")
+
+$attributes[wk font size:K81:66]:="32pt"
+$attributes[wk font bold:K81:68]:=wk false:K81:173
+$styleSheet.setAttributes($attributes)
+
+
 
 // PageNumber
-$stylesheet:=WP New style sheet:C1650(wpDoc; wk type paragraph:K81:191; "PageNumber_Right")
-WP SET ATTRIBUTES:C1342($stylesheet; wk font:K81:69; "Helvetica Neue"; wk font size:K81:66; "16pt"; wk text align:K81:49; wk right:K81:96)
+$styleSheet:=wpDoc.newStyleSheet(wk type paragraph:K81:191; "PageNumber_Right")
 
-$stylesheet:=WP New style sheet:C1650(wpDoc; wk type paragraph:K81:191; "PageNumber_Left")
-WP SET ATTRIBUTES:C1342($stylesheet; wk font:K81:69; "Helvetica Neue"; wk font size:K81:66; "16pt"; wk text align:K81:49; wk left:K81:95)
+$attributes:=New object:C1471
+$attributes[wk font:K81:69]:="Helvetica Neue"
+$attributes[wk font size:K81:66]:="16pt"
+$attributes[wk text align:K81:49]:=wk right:K81:96
+$styleSheet.setAttributes($attributes)
+
+$styleSheet:=wpDoc.newStyleSheet(wk type paragraph:K81:191; "PageNumber_Left")
+
+$attributes[wk text align:K81:49]:=wk left:K81:95
+$styleSheet.setAttributes($attributes)
+
 
 
 
