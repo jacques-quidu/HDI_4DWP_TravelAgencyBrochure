@@ -3,8 +3,8 @@
 var $flyerSel : cs:C1710.FlyerSelection
 var flyerEnt : cs:C1710.FlyerEntity
 
-var wpSummaryTable : Object
-wpSummaryTable:=New object:C1471()
+var wpSummaryRange : Object
+wpSummaryRange:=New object:C1471()
 
 wpDoc:=cs:C1710.wp.document.new()
 

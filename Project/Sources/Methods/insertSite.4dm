@@ -49,7 +49,7 @@ For each ($siteEnt; $siteSel)
 	$section:=$oRange.getSection()
 	
 	// Format the current section
-	$section.setAttributes({columnCount: 3; columnSpacing: "0.5cm"; pageMarginTop: "13cm"})
+	$section.setAttributes({columnCount: 3; columnSpacing: "0.5cm"})
 	
 	// Insert footer in the current section
 	$footer:=$section.newFooter()
@@ -57,24 +57,18 @@ For each ($siteEnt; $siteSel)
 	
 	// Insert table in the footer
 	$wpTable:=$oRange.appendTable()
-	//(aussi tous les params optionnels et nbcCol+nbRow en premier de préférence avant le updateRange qui n'est jamais utilisé de toute façon ou presque)
-	//var $table : Object
-	//$table:=WP Insert table($oRange.range; wk append)
-	//$wpTable:=cs.wp.table.new($table)
 	
 	// Odd or Even page
 	$info:=$oRange.getPosition()
 	$pageNumber:=$info.page
 	If (($pageNumber%2)=0)
 		$wpRow:=$wpTable.appendRow("page"; $siteEnt.Condition)
-		//$wpRow:=WP Table append row($wpTable.table; "page"; $siteEnt.Condition)
 		$pair1:=wk right:K81:96
 		$pair2:=wk left:K81:95
 		$cell1:=2
 		$cell2:=1
 	Else 
 		$wpRow:=$wpTable.appendRow($siteEnt.Condition; "page")
-		//$wpRow:=WP Table append row($wpTable.table; $siteEnt.Condition; "page")
 		$pair1:=wk left:K81:95
 		$pair2:=wk right:K81:96
 		$cell1:=1
@@ -95,13 +89,13 @@ For each ($siteEnt; $siteSel)
 	
 	//Insert site image
 	$obPict:=wpDoc.newAnchoredPicture($siteEnt.Image1)
-	$obPict.setAttributes({anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "80pt"; anchorHorizontalAlign: $pair1})
+	$obPict.setAttributes({anchorLayout: wk text wrap top bottom:K81:379; marginBottom: "0.5cm"; anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "80pt"; anchorHorizontalAlign: $pair1})
 	
 	$obPict:=wpDoc.newAnchoredPicture($siteEnt.Image2)
-	$obPict.setAttributes({anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "80pt"; anchorHorizontalAlign: $pair2})
+	$obPict.setAttributes({anchorLayout: wk text wrap top bottom:K81:379; marginBottom: "0.5cm"; anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "80pt"; anchorHorizontalAlign: $pair2})
 	
 	$obPict:=wpDoc.newAnchoredPicture($siteEnt.Image3)
-	$obPict.setAttributes({anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "213pt"; anchorHorizontalAlign: $pair2})
+	$obPict.setAttributes({anchorLayout: wk text wrap top bottom:K81:379; marginBottom: "0.5cm"; anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "213pt"; anchorHorizontalAlign: $pair2})
 	
 	// Insert continent map
 	$obPict:=wpDoc.newAnchoredPicture($siteEnt.toCountry.toContinent.Image)
@@ -117,17 +111,17 @@ For each ($siteEnt; $siteSel)
 	
 	// Insert the continent name in the summary page
 	If ($lastContinent#$siteEnt.toCountry.toContinent.Name)
-		wpSummaryTable:=wpSummaryTable.textRange(wpSummaryTable.range.end; wpSummaryTable.range.end)
-		wpSummaryTable.appendText(Char:C90(Carriage return:K15:38)+$siteEnt.toCountry.toContinent.Name+Char:C90(Carriage return:K15:38))
-		wpSummaryTable.setAttributes({fontSize: 14; fontBold: wk true:K81:174})
+		wpSummaryRange:=wpDoc.textRange(wpSummaryRange.range.end; wpSummaryRange.range.end)
+		wpSummaryRange.appendText(Char:C90(Carriage return:K15:38)+$siteEnt.toCountry.toContinent.Name+Char:C90(Carriage return:K15:38))
+		wpSummaryRange.setAttributes({fontSize: 14; fontBold: wk true:K81:174})
 		$lastContinent:=$siteEnt.toCountry.toContinent.Name
 	End if 
 	
 	// Insert the site name and the page number in the summary page
-	wpSummaryTable.appendText($siteEnt.Name+" - "+Uppercase:C13($siteEnt.toCountry.Name)+Char:C90(Tab:K15:37))
-	wpSummaryTable:=wpSummaryTable.textRange(wpSummaryTable.range.end; wpSummaryTable.range.end)
-	wpSummaryTable.appendText(String:C10($pageNumber)+Char:C90(Carriage return:K15:38))
-	wpSummaryTable.setAttributes({fontSize: 12})
-	wpSummaryTable.setLink(New object:C1471("bookmark"; Replace string:C233($siteEnt.Name; " "; "")))
+	wpSummaryRange.appendText($siteEnt.Name+" - "+Uppercase:C13($siteEnt.toCountry.Name)+Char:C90(Tab:K15:37))
+	wpSummaryRange:=wpDoc.textRange(wpSummaryRange.range.end; wpSummaryRange.range.end)
+	wpSummaryRange.appendText(String:C10($pageNumber)+Char:C90(Carriage return:K15:38))
+	wpSummaryRange.setAttributes({fontSize: 12})
+	wpSummaryRange.setLink(New object:C1471("bookmark"; Replace string:C233($siteEnt.Name; " "; "")))
 	
 End for each 

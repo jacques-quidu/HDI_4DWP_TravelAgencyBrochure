@@ -101,8 +101,7 @@ $breakFormula:=Formula:C1597(Uppercase:C13(This:C1470.item.toCountry.toContinent
 $wpRow.element.breakFormula:=$breakFormula
 
 $oRange:=$wpTable.getCells(1; $wpTable.table.rowCount; 1; 1)
-$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
-$oNewRange.replaceByFormula($breakFormula)
+$oRange.replaceByFormula($breakFormula)
 
 
 //add data row
@@ -114,36 +113,28 @@ $wpRow.element.backgroundColor:=wk transparent:K81:134
 
 
 $oRange:=$wpTable.getCells(1; $wpTable.table.rowCount; 1; 1)
-$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
-$oNewRange.replaceByFormula(Formula:C1597(This:C1470.item.Name))
+$oRange.replaceByFormula(Formula:C1597(This:C1470.item.Name))
 
 $oRange:=$wpTable.getCells(2; $wpTable.table.rowCount; 1; 1)
-$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
-$oNewRange.replaceByFormula(Formula:C1597(This:C1470.item.toCountry.Name))
+$oRange.replaceByFormula(Formula:C1597(This:C1470.item.toCountry.Name))
 
 $oRange:=$wpTable.getCells(3; $wpTable.table.rowCount; 1; 1)
-$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
-$oNewRange.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Rating); ""; "★"; "★★"; "★★★"; "★★★★"; "★★★★★")))
+$oRange.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Rating); ""; "★"; "★★"; "★★★"; "★★★★"; "★★★★★")))
 
 $oRange:=$wpTable.getCells(4; $wpTable.table.rowCount; 1; 1)
-$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
-$oNewRange.replaceByFormula(Formula:C1597(This:C1470.item.Price))
+$oRange.replaceByFormula(Formula:C1597(This:C1470.item.Price))
 
 $oRange:=$wpTable.getCells(5; $wpTable.table.rowCount; 1; 1)
-$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
-$oNewRange.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Restaurant); ""; "★"; "★★"; "★★★")))
+$oRange.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Restaurant); ""; "★"; "★★"; "★★★")))
 
 $oRange:=$wpTable.getCells(6; $wpTable.table.rowCount; 1; 1)
-$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
-$oNewRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.AllIncludes; "●"; "")))
+$oRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.AllIncludes; "●"; "")))
 
 $oRange:=$wpTable.getCells(7; $wpTable.table.rowCount; 1; 1)
-$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
-$oNewRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Animation; "●"; "")))
+$oRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Animation; "●"; "")))
 
 $oRange:=$wpTable.getCells(8; $wpTable.table.rowCount; 1; 1)
-$oNewRange:=$oRange.textRange(wk start text:K81:165; wk end text:K81:164)
-$oNewRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Children; "●"; "")))
+$oRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Children; "●"; "")))
 
 $wpTable.table.headerRowCount:=1
 
