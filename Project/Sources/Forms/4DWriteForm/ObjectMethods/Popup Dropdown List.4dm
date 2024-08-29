@@ -6,6 +6,7 @@ Case of
 		
 		$oRange:=WP Bookmark range:C1416(wpDocForm; arrBookmarks{arrBookmarks})
 		
-		WP SELECT:C1348(wpDocForm; $oRange)
+		INVOKE ACTION:C1439("bookmark?index="+String:C10(arrBookmarks))  //must use action in order to scroll to the top of page with a jump to bookmark
+		//WP SELECT(wpDocForm; $oRange)
 		
 End case 
