@@ -9,7 +9,7 @@ wpDoc.newBookmark($oRange; "FirstCover")
 $oRange.appendText(Uppercase:C13(flyerEnt.Title)+Char:C90(Carriage return:K15:38))
 
 // Format title
-$oRange.setAttributes({styleSheet: "Main_Title"})
+$oRange.styleSheet:="Main_Title"
 
 
 // Insert subtitle
@@ -18,7 +18,7 @@ $oRange:=wpDoc.textRange(wk end text:K81:164; wk end text:K81:164)
 $oRange.appendText(flyerEnt.Subtitle+Char:C90(Carriage return:K15:38))
 
 // Format subtitle
-$oRange.setAttributes({styleSheet: "Main_SubTitle"})
+$oRange.styleSheet:="Main_SubTitle"
 
 // Insert break
 $oRange.appendBreak(wk section break:K81:187)
@@ -27,7 +27,7 @@ $oRange.appendBreak(wk section break:K81:187)
 $section:=$oRange.getSection()
 
 // Insert cover image
-$section.setAttributes({backgroundImage: flyerEnt.Cover})
+$section.backgroundImage:=flyerEnt.Cover
 
 // Define the background image attributes for all sections
 var $attributes : Object
@@ -42,7 +42,7 @@ wpDoc.setAttributes($attributes)
 // Insert 4D Travels logo in the current section
 $obPict:=wpDoc.newAnchoredPicture(Get 4D folder:C485(Current resources folder:K5:16)+"logo.png")
 $attributes:=New object:C1471
-$attributes[wk anchor section:K81:228]:=$section.section.sectionIndex
+$attributes[wk anchor section:K81:228]:=$section.sectionIndex
 $attributes[wk anchor origin:K81:235]:=wk paper box:K81:215
 $attributes[wk anchor vertical align:K81:239]:=wk bottom:K81:98
 $attributes[wk anchor vertical offset:K81:238]:="1cm"

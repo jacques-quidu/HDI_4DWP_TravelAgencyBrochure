@@ -11,7 +11,7 @@ wpDoc.newBookmark($oRange; "Introduction")
 $oRange.appendBody(flyerEnt.Intro)
 
 // Format all text in range
-$oRange.setAttributes({paddingBottom: "5pt"})
+$oRange.paddingBottom:="5pt"
 
 
 // Add a specific format for the first and third paragraph
@@ -28,14 +28,14 @@ $oRange.appendBreak(wk section break:K81:187)
 $section:=$oRange.getSection()
 
 // Start page number from the introduction section
-$section.setAttributes({pageFirstNumber: 1})
+$section.pageFirstNumber:=1
 
 // Format the current section
 $section.setAttributes({columnSpacing: "1cm"; columnCount: 2; pageMarginTop: "13.5cm"})
 
 // Insert image in the current section
 $obPict:=wpDoc.newAnchoredPicture(flyerEnt.IntroImage)
-$obPict.setAttributes({anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215})
+$obPict.setAttributes({anchorSection: $section.sectionIndex; anchorOrigin: wk paper box:K81:215})
 
 
 

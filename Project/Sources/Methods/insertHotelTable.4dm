@@ -1,5 +1,5 @@
 //%attributes = {"invisible":true}
-var $oRange; $oNewRange : Object
+var $oRange; $oNewRange; $columns; $cell : Object
 var $wpTable; $wpRow : Object
 var $header; $footer; $info; $section; $subSection : Object
 var $iContinent; $iHotel; $firstpage; $iCol : Integer
@@ -30,17 +30,17 @@ $subSection:=$section.newSubsection(wk left page:K81:204)
 $header:=$subSection.newHeader()
 $oNewRange:=$header.textRange(wk start text:K81:165; wk end text:K81:164)
 $oNewRange.replaceByText("Lodgings")
-$oNewRange.range.styleSheet:="Title_Right"
-$header.element.marginLeft:="2.5cm"
-$header.element.marginRight:="2.5cm"
+$oNewRange.styleSheet:="Title_Right"
+$header.marginLeft:="2.5cm"
+$header.marginRight:="2.5cm"
 
 // Insert footer
 $footer:=$subSection.newFooter()
 $oNewRange:=$footer.textRange(wk start text:K81:165; wk end text:K81:164)
 $oNewRange.appendFormula(Formula:C1597(This:C1470.pageNumber))
-$oNewRange.range.styleSheet:="PageNumber_Left"
-$footer.element.marginLeft:="2.5cm"
-$footer.element.marginRight:="2.5cm"
+$oNewRange.styleSheet:="PageNumber_Left"
+$footer.marginLeft:="2.5cm"
+$footer.marginRight:="2.5cm"
 
 
 // Retrieve the reference to the right subsection
@@ -50,17 +50,17 @@ $subSection:=$section.getSubsection(wk right page:K81:205)
 $header:=$subSection.newHeader()
 $oNewRange:=$header.textRange(wk start text:K81:165; wk end text:K81:164)
 $oNewRange.replaceByText("Lodgings")
-$oNewRange.range.styleSheet:="Title_Left"
-$header.element.marginLeft:="2.5cm"
-$header.element.marginRight:="2.5cm"
+$oNewRange.styleSheet:="Title_Left"
+$header.marginLeft:="2.5cm"
+$header.marginRight:="2.5cm"
 
 // Insert footer
 $footer:=$subSection.newFooter()
 $oNewRange:=$footer.textRange(wk start text:K81:165; wk end text:K81:164)
 $oNewRange.appendFormula(Formula:C1597(This:C1470.pageNumber))
-$oNewRange.range.styleSheet:="PageNumber_Right"
-$footer.element.marginLeft:="2.5cm"
-$footer.element.marginRight:="2.5cm"
+$oNewRange.styleSheet:="PageNumber_Right"
+$footer.marginLeft:="2.5cm"
+$footer.marginRight:="2.5cm"
 
 
 
@@ -70,14 +70,14 @@ $wpTable:=$oRange.appendTable()
 // append header row
 $wpRow:=$wpTable.appendRow($colHeader[1]; $colHeader[2]; $colHeader[3]; $colHeader[4]; $colHeader[5]; $colHeader[6]; $colHeader[7]; $colHeader[8])
 
-$oRange:=$wpTable.getColumns(1; 8)
-$oRange.setAttributes({width: "50pt"; fontSize: "10pt"; borderColor: "#42cad7"})
+$columns:=$wpTable.getColumns(1; 8)
+$columns.setAttributes({width: "50pt"; fontSize: "10pt"; borderColor: "#42cad7"})
 
-$oRange:=$wpTable.getColumns(2; 3)
-$oRange.range.width:="60pt"
+$columns:=$wpTable.getColumns(2; 3)
+$columns.width:="60pt"
 
-$oRange:=$wpTable.getColumns(1; 1)
-$oRange.range.width:="90pt"
+$columns:=$wpTable.getColumns(1; 1)
+$columns.width:="90pt"
 
 
 var $hotelSel : cs:C1710.HotelSelection
@@ -89,56 +89,57 @@ $hotelSel:=flyerEnt.toHotels.orderBy("toCountry.toContinent.Name, toCountry.Name
 var $data : Object
 $data:=New object:C1471("hotels"; $hotelSel)
 wpDoc.setDataContext($data)
-$wpTable.table.dataSource:=Formula:C1597(This:C1470.data.hotels)
+$wpTable.dataSource:=Formula:C1597(This:C1470.data.hotels)
 
 //add break row for continent name
 
 $wpRow:=$wpTable.appendRow(""; ""; ""; ""; ""; ""; ""; "")
-$wpRow.element.backgroundColor:="#42cad7"
+$wpRow.backgroundColor:="#42cad7"
 
 var $breakFormula : Object
 $breakFormula:=Formula:C1597(Uppercase:C13(This:C1470.item.toCountry.toContinent.Name))
-$wpRow.element.breakFormula:=$breakFormula
+$wpRow.breakFormula:=$breakFormula
 
-$oRange:=$wpTable.getCells(1; $wpTable.table.rowCount; 1; 1)
-$oRange.replaceByFormula($breakFormula)
+$cell:=$wpTable.getCells(1; $wpTable.table.rowCount; 1; 1)
+$cell.replaceByFormula($breakFormula)
 
 
 //add data row
 
 $wpRow:=$wpTable.appendRow(""; ""; ""; ""; ""; ""; ""; "")
 //append row on default copy attributes from previous row so we need to reset break formula and background here
-$wpRow.element.breakFormula:=Null:C1517
-$wpRow.element.backgroundColor:=wk transparent:K81:134
+$wpRow.breakFormula:=Null:C1517
+$wpRow.backgroundColor:=wk transparent:K81:134
 
 
-$oRange:=$wpTable.getCells(1; $wpTable.table.rowCount; 1; 1)
-$oRange.replaceByFormula(Formula:C1597(This:C1470.item.Name))
+$cell:=$wpTable.getCells(1; $wpTable.table.rowCount; 1; 1)
+$cell.replaceByFormula(Formula:C1597(This:C1470.item.Name))
 
-$oRange:=$wpTable.getCells(2; $wpTable.table.rowCount; 1; 1)
-$oRange.replaceByFormula(Formula:C1597(This:C1470.item.toCountry.Name))
+$cell:=$wpTable.getCells(2; $wpTable.table.rowCount; 1; 1)
+$cell.replaceByFormula(Formula:C1597(This:C1470.item.toCountry.Name))
 
-$oRange:=$wpTable.getCells(3; $wpTable.table.rowCount; 1; 1)
-$oRange.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Rating); ""; "★"; "★★"; "★★★"; "★★★★"; "★★★★★")))
+$cell:=$wpTable.getCells(3; $wpTable.table.rowCount; 1; 1)
+$cell.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Rating); ""; "★"; "★★"; "★★★"; "★★★★"; "★★★★★")))
 
-$oRange:=$wpTable.getCells(4; $wpTable.table.rowCount; 1; 1)
-$oRange.replaceByFormula(Formula:C1597(This:C1470.item.Price))
+$cell:=$wpTable.getCells(4; $wpTable.table.rowCount; 1; 1)
+$cell.replaceByFormula(Formula:C1597(This:C1470.item.Price))
 
-$oRange:=$wpTable.getCells(5; $wpTable.table.rowCount; 1; 1)
-$oRange.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Restaurant); ""; "★"; "★★"; "★★★")))
+$cell:=$wpTable.getCells(5; $wpTable.table.rowCount; 1; 1)
+$cell.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Restaurant); ""; "★"; "★★"; "★★★")))
 
-$oRange:=$wpTable.getCells(6; $wpTable.table.rowCount; 1; 1)
-$oRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.AllIncludes; "●"; "")))
+$cell:=$wpTable.getCells(6; $wpTable.table.rowCount; 1; 1)
+$cell.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.AllIncludes; "●"; "")))
 
-$oRange:=$wpTable.getCells(7; $wpTable.table.rowCount; 1; 1)
-$oRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Animation; "●"; "")))
+$cell:=$wpTable.getCells(7; $wpTable.table.rowCount; 1; 1)
+$cell.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Animation; "●"; "")))
 
-$oRange:=$wpTable.getCells(8; $wpTable.table.rowCount; 1; 1)
-$oRange.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Children; "●"; "")))
+$cell:=$wpTable.getCells(8; $wpTable.table.rowCount; 1; 1)
+$cell.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Children; "●"; "")))
 
-$wpTable.table.headerRowCount:=1
+$wpTable.headerRowCount:=1
 
-$oRange:=$wpTable.getColumns(1; 8)
-$oRange.range.textAlign:=wk center:K81:99
+$columns:=$wpTable.getColumns(1; 8)
+$columns.setAttributes({textAlign: wk center:K81:99})
+
 
 

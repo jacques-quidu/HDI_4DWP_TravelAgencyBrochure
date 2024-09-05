@@ -12,12 +12,11 @@ $tab:=New object:C1471
 $tab[wk offset:K81:280]:=16
 $tab[wk type:K81:189]:=wk right:K81:96
 $tab[wk leading:K81:281]:="."
-wpSummaryRange.setAttributes({tabs: New collection:C1472($tab)})
-
+wpSummaryRange.tabs:=New collection:C1472($tab)
 
 // Insert section break
 wpSummaryRange.appendBreak(wk section break:K81:187)
-wpSummaryRange:=wpDoc.textRange(wpSummaryRange.range.start; wpSummaryRange.range.start)
+wpSummaryRange:=wpDoc.textRange(wpSummaryRange.start; wpSummaryRange.start)
 
 // Retrieve the current section
 $section:=wpSummaryRange.getSection()
@@ -27,7 +26,7 @@ $header:=$section.newHeader()
 
 $oRange:=$header.textRange(wk start text:K81:165; wk end text:K81:164)
 $oRange.appendText("Summary")
-$oRange.setAttributes({styleSheet: "Title_Left"})
+$oRange.styleSheet:="Title_Left"
 
 
 

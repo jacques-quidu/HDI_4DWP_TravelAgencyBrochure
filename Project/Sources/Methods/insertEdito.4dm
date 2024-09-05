@@ -9,11 +9,11 @@ wpDoc.newBookmark($oRange; "Editorial")
 $oRange.appendText(flyerEnt.Edito)
 
 // Format text
-$oRange.setAttributes({styleSheet: "Edito_Text"})
+$oRange.styleSheet:="Edito_Text"
 
 // Format first paragraph
 $colParagraph:=$oRange.getElements(wk type paragraph:K81:191)
-$colParagraph[0].setAttributes({styleSheet: "Edito_Title"})
+$colParagraph[0].styleSheet:="Edito_Title"
 
 
 // Insert break
@@ -23,4 +23,5 @@ $oRange.appendBreak(wk section break:K81:187)
 $section:=$oRange.getSection()
 
 // Insert Edito image 
-$section.setAttributes({backgroundImage: flyerEnt.EditoImage})
+$section.backgroundImage:=flyerEnt.EditoImage
+

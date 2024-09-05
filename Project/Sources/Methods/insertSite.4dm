@@ -89,17 +89,17 @@ For each ($siteEnt; $siteSel)
 	
 	//Insert site image
 	$obPict:=wpDoc.newAnchoredPicture($siteEnt.Image1)
-	$obPict.setAttributes({anchorLayout: wk text wrap top bottom:K81:379; marginBottom: "0.5cm"; anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "80pt"; anchorHorizontalAlign: $pair1})
+	$obPict.setAttributes({anchorLayout: wk text wrap top bottom:K81:379; marginBottom: "0.5cm"; anchorSection: $section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "80pt"; anchorHorizontalAlign: $pair1})
 	
 	$obPict:=wpDoc.newAnchoredPicture($siteEnt.Image2)
-	$obPict.setAttributes({anchorLayout: wk text wrap top bottom:K81:379; marginBottom: "0.5cm"; anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "80pt"; anchorHorizontalAlign: $pair2})
+	$obPict.setAttributes({anchorLayout: wk text wrap top bottom:K81:379; marginBottom: "0.5cm"; anchorSection: $section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "80pt"; anchorHorizontalAlign: $pair2})
 	
 	$obPict:=wpDoc.newAnchoredPicture($siteEnt.Image3)
-	$obPict.setAttributes({anchorLayout: wk text wrap top bottom:K81:379; marginBottom: "0.5cm"; anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "213pt"; anchorHorizontalAlign: $pair2})
+	$obPict.setAttributes({anchorLayout: wk text wrap top bottom:K81:379; marginBottom: "0.5cm"; anchorSection: $section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorVerticalOffset: "213pt"; anchorHorizontalAlign: $pair2})
 	
 	// Insert continent map
 	$obPict:=wpDoc.newAnchoredPicture($siteEnt.toCountry.toContinent.Image)
-	$obPict.setAttributes({anchorSection: $section.section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorHorizontalOffset: "20pt"; anchorVerticalOffset: "0.8cm"; anchorHorizontalAlign: $pair2})
+	$obPict.setAttributes({anchorSection: $section.sectionIndex; anchorOrigin: wk paper box:K81:215; anchorHorizontalOffset: "20pt"; anchorVerticalOffset: "0.8cm"; anchorHorizontalAlign: $pair2})
 	
 	
 	// Insert header in the current section
@@ -111,7 +111,7 @@ For each ($siteEnt; $siteSel)
 	
 	// Insert the continent name in the summary page
 	If ($lastContinent#$siteEnt.toCountry.toContinent.Name)
-		wpSummaryRange:=wpDoc.textRange(wpSummaryRange.range.end; wpSummaryRange.range.end)
+		wpSummaryRange:=wpDoc.textRange(wpSummaryRange.end; wpSummaryRange.end)
 		wpSummaryRange.appendText(Char:C90(Carriage return:K15:38)+$siteEnt.toCountry.toContinent.Name+Char:C90(Carriage return:K15:38))
 		wpSummaryRange.setAttributes({fontSize: 14; fontBold: wk true:K81:174})
 		$lastContinent:=$siteEnt.toCountry.toContinent.Name
@@ -119,7 +119,7 @@ For each ($siteEnt; $siteSel)
 	
 	// Insert the site name and the page number in the summary page
 	wpSummaryRange.appendText($siteEnt.Name+" - "+Uppercase:C13($siteEnt.toCountry.Name)+Char:C90(Tab:K15:37))
-	wpSummaryRange:=wpDoc.textRange(wpSummaryRange.range.end; wpSummaryRange.range.end)
+	wpSummaryRange:=wpDoc.textRange(wpSummaryRange.end; wpSummaryRange.end)
 	wpSummaryRange.appendText(String:C10($pageNumber)+Char:C90(Carriage return:K15:38))
 	wpSummaryRange.setAttributes({fontSize: 12})
 	wpSummaryRange.setLink(New object:C1471("bookmark"; Replace string:C233($siteEnt.Name; " "; "")))
