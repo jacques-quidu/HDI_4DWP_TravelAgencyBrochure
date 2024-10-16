@@ -71,7 +71,9 @@ $wpTable:=$oRange.appendTable()
 $wpRow:=$wpTable.appendRow($colHeader[1]; $colHeader[2]; $colHeader[3]; $colHeader[4]; $colHeader[5]; $colHeader[6]; $colHeader[7]; $colHeader[8])
 
 $columns:=$wpTable.getColumns(1; 8)
-$columns.setAttributes({width: "50pt"; fontSize: "10pt"; borderColor: "#42cad7"})
+$columns.width:="50pt"
+$columns.borderColor:="#42cad7"
+$columns.textRange().fontSize:="10pt"
 
 $columns:=$wpTable.getColumns(2; 3)
 $columns.width:="60pt"
@@ -139,7 +141,8 @@ $cell.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Children; "●"
 $wpTable.headerRowCount:=1
 
 $columns:=$wpTable.getColumns(1; 8)
-$columns.setAttributes({textAlign: wk center:K81:99})
+$columns.textRange().textAlign:=wk center:K81:99
+
 
 
 
