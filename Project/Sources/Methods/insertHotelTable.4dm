@@ -95,48 +95,28 @@ $wpTable.dataSource:=Formula:C1597(This:C1470.data.hotels)
 
 //add break row for continent name
 
-$wpRow:=$wpTable.appendRow(""; ""; ""; ""; ""; ""; ""; "")
-$wpRow.backgroundColor:="#42cad7"
-
 var $breakFormula : Object
 $breakFormula:=Formula:C1597(Uppercase:C13(This:C1470.item.toCountry.toContinent.Name))
+
+$wpRow:=$wpTable.appendRow($breakFormula; ""; ""; ""; ""; ""; ""; "")
+$wpRow.backgroundColor:="#42cad7"
 $wpRow.breakFormula:=$breakFormula
-
-$cell:=$wpTable.getCells(1; $wpTable.table.rowCount; 1; 1)
-$cell.replaceByFormula($breakFormula)
-
 
 //add data row
 
-$wpRow:=$wpTable.appendRow(""; ""; ""; ""; ""; ""; ""; "")
+$wpRow:=$wpTable.appendRow(\
+Formula:C1597(This:C1470.item.Name); \
+Formula:C1597(This:C1470.item.toCountry.Name); \
+Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Rating); ""; "★"; "★★"; "★★★"; "★★★★"; "★★★★★")); \
+Formula:C1597(This:C1470.item.Price); \
+Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Restaurant); ""; "★"; "★★"; "★★★")); \
+Formula:C1597(Choose:C955(This:C1470.item.AllIncludes; "●"; "")); \
+Formula:C1597(Choose:C955(This:C1470.item.Animation; "●"; "")); \
+Formula:C1597(Choose:C955(This:C1470.item.Children; "●"; "")))
+
 //append row on default copy attributes from previous row so we need to reset break formula and background here
 $wpRow.breakFormula:=Null:C1517
 $wpRow.backgroundColor:=wk transparent:K81:134
-
-
-$cell:=$wpTable.getCells(1; $wpTable.table.rowCount; 1; 1)
-$cell.replaceByFormula(Formula:C1597(This:C1470.item.Name))
-
-$cell:=$wpTable.getCells(2; $wpTable.table.rowCount; 1; 1)
-$cell.replaceByFormula(Formula:C1597(This:C1470.item.toCountry.Name))
-
-$cell:=$wpTable.getCells(3; $wpTable.table.rowCount; 1; 1)
-$cell.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Rating); ""; "★"; "★★"; "★★★"; "★★★★"; "★★★★★")))
-
-$cell:=$wpTable.getCells(4; $wpTable.table.rowCount; 1; 1)
-$cell.replaceByFormula(Formula:C1597(This:C1470.item.Price))
-
-$cell:=$wpTable.getCells(5; $wpTable.table.rowCount; 1; 1)
-$cell.replaceByFormula(Formula:C1597(Choose:C955(Num:C11(This:C1470.item.Restaurant); ""; "★"; "★★"; "★★★")))
-
-$cell:=$wpTable.getCells(6; $wpTable.table.rowCount; 1; 1)
-$cell.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.AllIncludes; "●"; "")))
-
-$cell:=$wpTable.getCells(7; $wpTable.table.rowCount; 1; 1)
-$cell.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Animation; "●"; "")))
-
-$cell:=$wpTable.getCells(8; $wpTable.table.rowCount; 1; 1)
-$cell.replaceByFormula(Formula:C1597(Choose:C955(This:C1470.item.Children; "●"; "")))
 
 $wpTable.headerRowCount:=1
 
